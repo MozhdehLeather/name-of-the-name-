@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priceless Capture | Premium Photography</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;350;400;450;500;550;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <style>
+        :root {
+            --black: #000000;
+            --dark: #0a0a0a;
+            --gray: #1a1a1a;
+            --light-gray: #2a2a2a;
+            --white: #ffffff;
+            --off-white: #f0f0f0;
+            --accent: #8a8a8e;
+            --accent-light: #a8a8a8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.7;
+            font-weight: 400;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-weight: 700;
+            line-height: 0.95;
+            letter-spacing: -0.035em;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--off-white) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 650;
+            line-height: 1.05;
+            letter-spacing: -0.025em;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 0;
+            width: 3rem;
+            height: 2px;
+            background: var(--white);
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.015em;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+            color: var(--accent);
+            line-height: 1.8;
+            max-width: 650px;
+            font-weight: 350;
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent-light);
+            margin-bottom: 1rem;
+            display: block;
+            font-weight: 500;
+        }
+
+        /* Layout */
+        section {
+            padding: 10rem 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(ellipse at 50% 50%, rgba(26, 26, 26, 0.2) 0%, var(--black) 70%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            padding: 0 5%;
+            width: 100%;
+        }
+
+        .tagline {
+            font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+            color: var(--accent-light);
+            margin-bottom: 3.5rem;
+            font-weight: 350;
+            line-height: 1.3;
+            max-width: 600px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.4rem 3.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 0;
+            border: 1.5px solid var(--white);
+            color: var(--white);
+            background: transparent;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .btn:hover {
+            background: var(--white);
+            color: var(--black);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn i {
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover i {
+            transform: translateX(3px);
+        }
+
+        .btn-whatsapp {
+            border-color: #25D366;
+            color: #25D366;
+            margin-top: 2rem;
+        }
+
+        .btn-whatsapp:hover {
+            background: #25D366;
+            color: var(--black);
+        }
+
+        /* Service Areas */
+        .service-areas {
+            background: var(--dark);
+            position: relative;
+        }
+
+        .areas-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.25rem;
+            margin-top: 3rem;
+        }
+
+        .area {
+            font-size: 1.125rem;
+            color: var(--accent);
+            padding: 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .area:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .area:hover {
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .area:hover:before {
+            opacity: 1;
+        }
+
+        .area.main-city {
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .coverage-note {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1rem;
+            color: var(--accent-light);
+            font-style: italic;
+        }
+
+        /* Pricing */
+        .pricing {
+            background: var(--black);
+            position: relative;
+        }
+
+        .pricing-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            margin-top: 3rem;
+            justify-content: center;
+        }
+
+        .pricing-card {
+            flex: 0 1 400px;
+            padding: 3.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--white), transparent);
+            transform: translateX(-100%);
+        }
+
+        .pricing-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .pricing-card:hover:before {
+            animation: shine 1.5s ease;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .price {
+            font-size: 4.5rem;
+            font-weight: 300;
+            margin: 1.5rem 0;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .price small {
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        /* Camera Gear */
+        .gear-section {
+            background: var(--dark);
+            position: relative;
+        }
+
+        .gear-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 8rem;
+            margin-top: 4rem;
+        }
+
+        .gear-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            opacity: 0;
+        }
+
+        .gear-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .gear-image {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: contain;
+            filter: grayscale(20%);
+            transition: filter 0.5s ease, transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gear-card:hover .gear-image {
+            filter: grayscale(0%);
+        }
+
+        .specs {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .spec-item {
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-size: 0.75rem;
+            color: var(--accent-light);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .spec-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        /* Benefits */
+        .benefits {
+            background: var(--black);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .benefit {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            opacity: 0;
+        }
+
+        .benefit:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            top: 2.5rem;
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.4s ease;
+        }
+
+        .benefit:hover:before {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .benefit:last-child {
+            border-bottom: none;
+        }
+
+        .benefit h3 {
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .benefit:hover h3 {
+            color: var(--off-white);
+        }
+
+        /* Contact */
+        .contact {
+            text-align: center;
+            background: var(--dark);
+            position: relative;
+        }
+
+        .contact:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--white), transparent);
+        }
+
+        .phone {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            margin: 3rem 0;
+            letter-spacing: 0.02em;
+            color: var(--off-white);
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+        }
+
+        .scroll-text {
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+            display: block;
+            text-align: center;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--white) 0%, transparent 100%);
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-line:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: var(--white);
+            animation: scrollLine 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes scrollLine {
+            0% {
+                top: -20px;
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--white);
+            z-index: 1000;
+            transition: width 0.1s linear;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            section {
+                padding: 8rem 5%;
+            }
+            
+            .gear-card {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+            
+            .gear-cards {
+                gap: 6rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 6rem 5%;
+            }
+            
+            h1 {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+            }
+            
+            h2 {
+                font-size: clamp(2rem, 5vw, 3rem);
+            }
+            
+            .areas-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+            
+            .area {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            
+            .pricing-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .pricing-card {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .benefits-grid {
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 5rem 5%;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.25rem;
+            }
+            
+            .tagline {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 1.25rem 2.5rem;
+                font-size: 0.75rem;
+            }
+            
+            .phone {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* Animation Classes */
+        .reveal-text {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .parallax-item {
+            will-change: transform;
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loading-text {
+            font-size: 1.5rem;
+            color: var(--accent);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-overlay" id="loading">
+        <div class="loading-text">PRICELESS CAPTURE</div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <span class="section-title">Premium Photography</span>
+            <h1 id="brand-name">Priceless<br>Capture</h1>
+            <p class="tagline" id="tagline">Moments captured with precision, emotion, and timeless elegance.</p>
+            <a href="#contact" class="btn" id="cta-button">
+                Book a Session
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+        <div class="scroll-indicator">
+            <span class="scroll-text">Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Service Areas -->
+    <section class="service-areas">
+        <div class="container">
+            <span class="section-title">Service Coverage</span>
+            <h2 class="reveal-text">Texas Metroplex</h2>
+            <p class="reveal-text">Serving North Texas with premium photography services across major cities and surrounding communities.</p>
+            <div class="areas-container" id="areas-container">
+                <!-- Areas populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing">
+        <div class="container">
+            <span class="section-title">Investment</span>
+            <h2 class="reveal-text">Simple & Transparent</h2>
+            <p class="reveal-text">Premium photography services with clear pricing and exceptional value.</p>
+            <div class="pricing-cards">
+                <div class="pricing-card" id="pricing-card-1">
+                    <h3 class="reveal-text">Standard Session</h3>
+                    <div class="price reveal-text">$70</div>
+                    <p class="reveal-text">Includes 5 professionally edited high-resolution images. Perfect for portraits, headshots, or small family sessions.</p>
+                </div>
+                <div class="pricing-card" id="pricing-card-2">
+                    <h3 class="reveal-text">Additional Images</h3>
+                    <div class="price reveal-text">$20<small>/each</small></div>
+                    <p class="reveal-text">Add more images to any session. Each receives the same professional editing and attention to detail.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Camera Gear -->
+    <section class="gear-section">
+        <div class="container">
+            <span class="section-title">Professional Equipment</span>
+            <h2 class="reveal-text">Precision Gear</h2>
+            <p class="reveal-text">Utilizing industry-leading equipment to ensure the highest quality results for every session.</p>
+            
+            <div class="gear-cards">
+                <div class="gear-card" id="sony-card">
+                    <div class="gear-image-container">
+                        <img src="https://sony.scene7.com/is/image/sonyglobalsolutions/og?$S7Product$&fmt=png-alpha" 
+                             alt="Sony A7 IV Camera" 
+                             class="gear-image parallax-item" 
+                             id="sony-image">
+                    </div>
+                    <div class="specs">
+                        <h3 class="reveal-text">Sony A7 IV</h3>
+                        <div class="spec-item reveal-text">
+                            <div class="spec-label">Camera System</div>
+                            <div class="spec-value">Full Frame Mirrorless</div>
+                        </div>
+                        <div class="spec-item reveal-text">
+                            <div class="spec-label">Portrait Lens</div>
+                            <div class="spec-value">85mm f/1.8 G Master</div>
+                        </div>
+                        <div class="spec-item reveal-text">
+                            <div class="spec-label">Wide Lens</div>
+                            <div class="spec-value">17-28mm f/2.8</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gear-card" id="canon-card">
+                    <div class="specs">
+                        <h3 class="reveal-text">Canon EOS 200D</h3>
+                        <div class="spec-item reveal-text">
+                            <div class="spec-label">Camera System</div>
+                            <div class="spec-value">APS-C DSLR</div>
+                        </div>
+                        <div class="spec-item reveal-text">
+                            <div class="spec-label">Telephoto Lens</div>
+                            <div class="spec-value">250mm f/5.6 L Series</div>
+                        </div>
+                        <div class="spec-item reveal-text">
+                            <div class="spec-label">Standard Lens</div>
+                            <div class="spec-value">55mm f/1.8 STM</div>
+                        </div>
+                    </div>
+                    <div class="gear-image-container">
+                        <img src="https://in.canon/media/image/2019/04/09/50bf148d56a04f31b53bcf0294941d90_EOS+200D+MKII+BK+Back.png" 
+                             alt="Canon EOS 200D Mark II" 
+                             class="gear-image parallax-item" 
+                             id="canon-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits">
+        <div class="container">
+            <span class="section-title">The Experience</span>
+            <h2 class="reveal-text">Why Choose Us</h2>
+            <p class="reveal-text">A premium photography experience designed around your vision and comfort.</p>
+            <div class="benefits-grid" id="benefits-container">
+                <!-- Benefits populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <span class="section-title">Get in Touch</span>
+            <h2 class="reveal-text">Book Your Session</h2>
+            <p class="reveal-text">Ready to create timeless memories? Let's discuss your vision.</p>
+            <div class="phone">+1 (214) 899-5002</div>
+            <a href="https://wa.me/12148995002" target="_blank" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i>
+                Message on WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Initialize GSAP
+        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+        // DOM Ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remove loading screen
+            gsap.to("#loading", {
+                opacity: 0,
+                duration: 0.8,
+                delay: 1.2,
+                onComplete: function() {
+                    document.getElementById("loading").style.display = "none";
+                    initAnimations();
+                }
+            });
+
+            // Animate loading text
+            gsap.fromTo(".loading-text", 
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 1, delay: 0.3 }
+            );
+        });
+
+        function initAnimations() {
+            // Hero text animation
+            const heroTimeline = gsap.timeline();
+            
+            heroTimeline
+                .from("#brand-name", {
+                    opacity: 0,
+                    y: 60,
+                    duration: 1.5,
+                    ease: "power3.out"
+                })
+                .from("#tagline", {
+                    opacity: 0,
+                    y: 40,
+                    duration: 1.2,
+                    ease: "power2.out"
+                }, "-=0.5")
+                .from("#cta-button", {
+                    opacity: 0,
+                    y: 40,
+                    duration: 1,
+                    ease: "power2.out"
+                }, "-=0.3");
+
+            // Service Areas
+            const areas = [
+                "Frisco, Texas",
+                "Plano, Texas",
+                "Richardson, Texas",
+                "Allen, Texas",
+                "McKinney, Texas",
+                // 30km surrounding areas
+                "The Colony, Texas",
+                "Little Elm, Texas",
+                "Prosper, Texas",
+                "Celina, Texas",
+                "Anna, Texas",
+                "Melissa, Texas",
+                "Carrollton, Texas",
+                "Addison, Texas",
+                "Lewisville, Texas",
+                "Flower Mound, Texas",
+                "Coppell, Texas",
+                "Wylie, Texas",
+                "Murphy, Texas",
+                "Sachse, Texas",
+                "Fairview, Texas"
+            ];
+            
+            const areasContainer = document.getElementById('areas-container');
+            
+            areas.forEach((area, index) => {
+                const areaElement = document.createElement('div');
+                areaElement.className = 'area reveal-text';
+                
+                if (index < 5) {
+                    areaElement.classList.add('main-city');
+                }
+                
+                areaElement.textContent = area;
+                areaElement.style.opacity = "0";
+                areaElement.style.transform = "translateY(30px)";
+                areasContainer.appendChild(areaElement);
+            });
+
+            // Add coverage note
+            const coverageNote = document.createElement('div');
+            coverageNote.className = 'coverage-note reveal-text';
+            coverageNote.textContent = "Frisco, Texas + 30km surrounding area coverage";
+            coverageNote.style.opacity = "0";
+            coverageNote.style.transform = "translateY(30px)";
+            areasContainer.appendChild(coverageNote);
+
+            // Benefits
+            const benefits = [
+                { title: "Natural Moments", desc: "We capture authentic emotions and genuine interactions, never forced poses." },
+                { title: "Professional Gear", desc: "Using Sony and Canon professional equipment for exceptional image quality." },
+                { title: "High-Resolution Edits", desc: "Every image receives professional color grading and precise retouching." },
+                { title: "Fast Delivery", desc: "Receive your professionally edited photos within 5-7 business days." },
+                { title: "Friendly Experience", desc: "A comfortable, stress-free session tailored to your preferences." },
+                { title: "Flexible Locations", desc: "Multiple location options including studio, outdoor, and on-location sessions." }
+            ];
+
+            const benefitsContainer = document.getElementById('benefits-container');
+            
+            benefits.forEach(benefit => {
+                const benefitElement = document.createElement('div');
+                benefitElement.className = 'benefit';
+                benefitElement.innerHTML = `
+                    <h3 class="reveal-text">${benefit.title}</h3>
+                    <p class="reveal-text">${benefit.desc}</p>
+                `;
+                benefitsContainer.appendChild(benefitElement);
+            });
+
+            // Setup Scroll Animations
+            setupRevealAnimations();
+            setupParallaxEffects();
+            setupProgressBar();
+            setupFloatingElements();
+            
+            // Add hover effects
+            setupHoverEffects();
+        }
+
+        function setupRevealAnimations() {
+            // Reveal text animations
+            gsap.utils.toArray('.reveal-text').forEach(element => {
+                gsap.fromTo(element,
+                    {
+                        opacity: 0,
+                        y: 40
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1.2,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: element,
+                            start: "top 85%",
+                            toggleActions: "play none none none"
+                        }
+                    }
+                );
+            });
+
+            // Stagger area animations
+            gsap.utils.toArray('.area').forEach((area, i) => {
+                gsap.fromTo(area,
+                    {
+                        opacity: 0,
+                        y: 30,
+                        scale: 0.9
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.8,
+                        delay: i * 0.05,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: area,
+                            start: "top 90%"
+                        }
+                    }
+                );
+            });
+
+            // Pricing cards animation with delay
+            gsap.fromTo("#pricing-card-1",
+                {
+                    opacity: 0,
+                    y: 80,
+                    rotateX: 10
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    rotateX: 0,
+                    duration: 1.4,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: "#pricing-card-1",
+                        start: "top 85%"
+                    }
+                }
+            );
+
+            gsap.fromTo("#pricing-card-2",
+                {
+                    opacity: 0,
+                    y: 80,
+                    rotateX: 10
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    rotateX: 0,
+                    duration: 1.4,
+                    delay: 0.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: "#pricing-card-2",
+                        start: "top 85%"
+                    }
+                }
+            );
+
+            // Camera cards animation
+            gsap.fromTo("#sony-card",
+                {
+                    opacity: 0,
+                    x: -100
+                },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.5,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: "#sony-card",
+                        start: "top 80%"
+                    }
+                }
+            );
+
+            gsap.fromTo("#canon-card",
+                {
+                    opacity: 0,
+                    x: 100
+                },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.5,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: "#canon-card",
+                        start: "top 80%"
+                    }
+                }
+            );
+
+            // Benefit animations
+            gsap.utils.toArray('.benefit').forEach((benefit, i) => {
+                gsap.fromTo(benefit,
+                    {
+                        opacity: 0,
+                        y: 40
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        delay: i * 0.1,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: benefit,
+                            start: "top 90%"
+                        }
+                    }
+                );
+            });
+        }
+
+        function setupParallaxEffects() {
+            // Enhanced parallax for camera images
+            gsap.to("#sony-image", {
+                y: -150,
+                scale: 1.05,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#sony-card",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1.5
+                }
+            });
+
+            gsap.to("#canon-image", {
+                y: -150,
+                scale: 1.05,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#canon-card",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1.5
+                }
+            });
+
+            // Subtle parallax for sections
+            gsap.utils.toArray('section').forEach(section => {
+                if (section.id !== 'hero') {
+                    gsap.fromTo(section,
+                        {
+                            backgroundPosition: "50% 0px"
+                        },
+                        {
+                            backgroundPosition: "50% 100px",
+                            ease: "none",
+                            scrollTrigger: {
+                                trigger: section,
+                                start: "top bottom",
+                                end: "bottom top",
+                                scrub: 0.5
+                            }
+                        }
+                    );
+                }
+            });
+        }
+
+        function setupProgressBar() {
+            // Scroll progress bar
+            ScrollTrigger.create({
+                trigger: "body",
+                start: "top top",
+                end: "bottom bottom",
+                onUpdate: (self) => {
+                    const progressBar = document.getElementById('progressBar');
+                    if (progressBar) {
+                        progressBar.style.width = `${self.progress * 100}%`;
+                    }
+                }
+            });
+        }
+
+        function setupFloatingElements() {
+            // Create floating background elements
+            for (let i = 0; i < 15; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                
+                const size = Math.random() * 4 + 1;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                
+                gsap.set(element, {
+                    width: size,
+                    height: size,
+                    xPercent: posX,
+                    yPercent: posY
+                });
+                
+                document.body.appendChild(element);
+                
+                // Animate floating motion
+                gsap.to(element, {
+                    y: "+=50",
+                    x: "+=20",
+                    duration: duration,
+                    delay: delay,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut"
+                });
+            }
+        }
+
+        function setupHoverEffects() {
+            // Enhanced hover effects
+            document.querySelectorAll('.btn, .area, .pricing-card, .benefit').forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    gsap.to(element, {
+                        scale: 1.02,
+                        duration: 0.3,
+                        ease: "power2.out"
+                    });
+                });
+                
+                element.addEventListener('mouseleave', () => {
+                    gsap.to(element, {
+                        scale: 1,
+                        duration: 0.3,
+                        ease: "power2.out"
+                    });
+                });
+            });
+
+            // Camera image hover enhancement
+            document.querySelectorAll('.gear-image').forEach(image => {
+                image.addEventListener('mouseenter', () => {
+                    gsap.to(image, {
+                        scale: 1.05,
+                        filter: "grayscale(0%) brightness(1.1)",
+                        duration: 0.5
+                    });
+                });
+                
+                image.addEventListener('mouseleave', () => {
+                    gsap.to(image, {
+                        scale: 1,
+                        filter: "grayscale(20%) brightness(1)",
+                        duration: 0.5
+                    });
+                });
+            });
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    gsap.to(window, {
+                        duration: 1.2,
+                        scrollTo: {
+                            y: targetElement,
+                            offsetY: 80
+                        },
+                        ease: "power3.inOut"
+                    });
+                }
+            });
+        });
+
+        // Window resize optimization
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            document.body.classList.add('resize-animation-stopper');
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                document.body.classList.remove('resize-animation-stopper');
+            }, 400);
+        });
+    </script>
+</body>
+</html>
